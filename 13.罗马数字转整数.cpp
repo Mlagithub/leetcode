@@ -13,37 +13,30 @@ class Solution {
 public:
 
     int romanToInt(string s) {
-        unordered_map<std::string, int> flags{
-            {"I", 1}, 
-            {"V", 5}, 
-            {"X", 10}, 
-            {"L", 50}, 
-            {"C", 100}, 
-            {"D", 500}, 
-            {"M", 1000},
-            {"IV", 4},
-            {"IX", 9},
-            {"XL", 40},
-            {"XC", 90},
-            {"CD", 400},
-            {"CM", 900}};
+        unordered_map<char, int> flags{
+            {'I', 1}, 
+            {'V', 5}, 
+            {'X', 10}, 
+            {'L', 50}, 
+            {'C', 100}, 
+            {'D', 500}, 
+            {'M', 1000}};
 
         int sum = 0;
-        for(int i=0; i < s.size();)
+        for(int i=0; i < s.size()-1;++i)
         {
-            // case of 2 char
-            auto val = flags.find(s.substr(i, 2));
-            if(val!=flags.end())
+            // case 
+            auto l = flags.find(s[i])->second;
+            auto r = flags.find(s[i+1])->second;
+            if(l < r)
             {
-                sum += val->second;
-                i+=2;
+                sum -= l;
             }
-            // case of 1 char
             else{
-                sum += flags.find(s.substr(i, 1))->second;
-                ++i;
+                sum += l;
             }
         }
+        sum += flags.find(s[s.size()-1])->second;
         return sum;
     }
 };
