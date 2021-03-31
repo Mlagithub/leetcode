@@ -26,8 +26,8 @@ public:
         for(int i=0; i < s.size()-1;++i)
         {
             // case 
-            auto l = flags.find(s[i])->second;
-            auto r = flags.find(s[i+1])->second;
+            auto l = this->charToInt(s[i]);
+            auto r = this->charToInt(s[i+1]);
             if(l < r)
             {
                 sum -= l;
@@ -36,8 +36,41 @@ public:
                 sum += l;
             }
         }
-        sum += flags.find(s[s.size()-1])->second;
+        sum += this->charToInt(s[s.size()-1]);
         return sum;
+    }
+
+
+    int charToInt(const char c)
+    {
+        int rst = 0;
+        switch (c)
+        {
+        case 'I':
+            rst = 1;
+            break;
+        case 'V':
+            rst = 5;
+            break;
+        case 'X':
+            rst = 10;
+            break;
+        case 'L':
+            rst = 50;
+            break;
+        case 'C':
+            rst = 100;
+            break;
+        case 'D':
+            rst = 500;
+            break;
+        case 'M':
+            rst = 1000;
+            break;
+        default:
+            break;
+        }
+        return rst;
     }
 };
 // @lc code=end
