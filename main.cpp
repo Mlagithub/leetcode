@@ -3,6 +3,7 @@
 
 // #include "67.二进制求和.cpp"
 // #include "69.x-的平方根.cpp"
+#include "111.二叉树的最小深度.cpp"
 
 // template<typename T>
 // std::ostream& operator << (std::ostream& os, std::vector<T> v)
@@ -26,6 +27,7 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+/*
 void trivalAndCompare(TreeNode* root, TreeNode* comp, int* rst)
 {
     if(*rst==0) return;
@@ -45,13 +47,21 @@ void trivalAndCompare(TreeNode* root, TreeNode* comp, int* rst)
         trivalAndCompare(root->right, comp->right, rst);
     }
 }
-
+*/
 
 
 int main(void)
 {
-    // Solution solution;
+    Solution solution;
+    TreeNode* t1 = new TreeNode(3);
+    t1->left = new TreeNode(9);
+    t1->right = new TreeNode(20);
+    t1->right->left = new TreeNode(15);
+    t1->right->right = new TreeNode(7);
 
+    std::cout << "minDepth of t1 is: " << solution.minDepth(t1) << '\n';
+
+    /*
     TreeNode* t1 = new TreeNode(1);
     t1->left = new TreeNode(2);
     t1->left->left = new TreeNode(3);
@@ -69,7 +79,7 @@ int main(void)
     int same = 1;
     trivalAndCompare(t1, t2, &same);
     std::cout << std::boolalpha << (bool)same << '\n';
-    
+    */
 
     /* mySqrt
     std::cout << "sqrt of 2147483647 : " << solution.mySqrt(2147483647) << '\n';
