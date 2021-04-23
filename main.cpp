@@ -5,7 +5,7 @@
 // #include "67.二进制求和.cpp"
 // #include "69.x-的平方根.cpp"
 // #include "111.二叉树的最小深度.cpp"
-#include "110.平衡二叉树.cpp"
+// #include "110.平衡二叉树.cpp"
 
 // template<typename T>
 // std::ostream& operator << (std::ostream& os, std::vector<T> v)
@@ -51,18 +51,23 @@ void trivalAndCompare(TreeNode* root, TreeNode* comp, int* rst)
 }
 */
 
+#include <cmath>
+
 
 int main(void)
 {
-    Solution solution;
-    TreeNode* t1 = new TreeNode(3);
-    t1->left = new TreeNode(9);
-    t1->right = new TreeNode(20);
-    t1->right->left = new TreeNode(15);
-    t1->right->right = new TreeNode(7);
+    // Solution solution;
+    // TreeNode* t1 = new TreeNode(3);
+    // t1->left = new TreeNode(9);
+    // t1->right = new TreeNode(20);
+    // t1->right->left = new TreeNode(15);
+    // t1->right->right = new TreeNode(7);
 
-    std::cout << std::boolalpha;
-    std::cout << "is t1 balance: " << solution.isBalanced(t1) << '\n';
+    std::cout << log2(9) << '\n';
+
+
+    // std::cout << std::boolalpha;
+    // std::cout << "is t1 balance: " << solution.isBalanced(t1) << '\n';
 
     /*
     TreeNode* t1 = new TreeNode(1);
