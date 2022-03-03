@@ -51,11 +51,91 @@ void trivalAndCompare(TreeNode* root, TreeNode* comp, int* rst)
 }
 */
 
-#include <cmath>
+#include <vector>
+#include <string>
+#include <unordered_map>
+#include <queue>
+
+using std::queue;
+using std::string;
+using std::vector;
+using std::unordered_map;
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if(digits.empty()) return {};
+
+        unordered_map<char, vector<char>> maps = {
+            { '2', { 'a', 'b', 'c' } },
+            { '3', { 'd', 'e', 'f' } },
+            { '4', { 'g', 'h', 'i' } },
+            { '5', { 'j', 'k', 'l' } },
+            { '6', { 'm', 'n', 'o' } },
+            { '7', { 'p', 'q', 'r', 's' } },
+            { '8', { 't', 'u', 'v' } },
+            { '9', { 'w', 'x', 'y', 'z' } }
+        };
+
+        queue<string> digitQueue;
+        for(auto it : maps[digits[0]]) digitQueue.push(string{it});
+        
+        for(int i=1; i<digits.size(); ++i)
+        {
+            int n = digitQueue.size();
+            for(int j=0; j<n; ++j)
+            {
+                auto str = digitQueue.front();
+                for(auto jt : maps[digits[i]])
+                {
+                    digitQueue.push(str+jt);
+                }
+                digitQueue.pop();
+            }
+        }
+
+        vector<string> rst;
+        {
+            while (!digitQueue.empty())
+            {
+                rst.push_back(digitQueue.front());
+                digitQueue.pop();
+            }
+        }
+
+        return rst;
+    }
+
+};
+
+
+#include <ostream>
+
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, vector<T> vec)
+{
+    os << "[";
+    for(auto it : vec)
+    {
+        os << ' ' << it; 
+    }
+    os << " ]";
+    return os;
+}
 
 
 int main(void)
 {
+    Solution solution;
+
+    std::cout << "Combination of 23: " << solution.letterCombinations("23") << '\n';
+    std::cout << "Combination of 33: " <<  solution.letterCombinations("33") << '\n';
+    std::cout << "Combination of 67: " <<  solution.letterCombinations("67") << '\n';
+    std::cout << "Combination of   : " <<  solution.letterCombinations("") << '\n';
+    std::cout << "Combination of 295: " <<  solution.letterCombinations("295") << '\n';
+
+
     // Solution solution;
     // TreeNode* t1 = new TreeNode(3);
     // t1->left = new TreeNode(9);
@@ -63,7 +143,7 @@ int main(void)
     // t1->right->left = new TreeNode(15);
     // t1->right->right = new TreeNode(7);
 
-    std::cout << log2(9) << '\n';
+    // std::cout << log2(9) << '\n';
 
 
     // std::cout << std::boolalpha;
